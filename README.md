@@ -5,9 +5,9 @@ Repository containing files and source code for the CS4445 AI module's final cap
 **Group name:** <ENTER_GROUP_NAME>  
   
 **Team members:**
-- Member A - <Student_ID>
-- Member B - <Student_ID>
-- Member C - <Student_ID>
+- Fred Sheppard - 23361433
+- Tóla Bowen MacCurtáin - <Student_ID>
+- Niall Somers - <Student_ID>
 
 ## Installation/Pre-requisites
 - Mention any libraries or installation requirements to demo your project if necessary.
