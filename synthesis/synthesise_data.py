@@ -91,7 +91,7 @@ class OghamGenerator:
         return add_border_and_resize(self.image)
 
 
-def generate_dataset(dataset_size=10, normal=0.4, skewed=0.3, scaled=0.3):
+def generate_dataset(dataset_size=850, normal=0.4, skewed=0.3, scaled=0.3):
     os.makedirs(output_dir, exist_ok=True)
     generator = OghamGenerator()
     count = 0
