@@ -173,3 +173,8 @@ cython_debug/
 # Misc
 *.pdf
 *.docx
+
+.idea
+
+output
+*.h5
