@@ -2,7 +2,7 @@
 # ᚌᚔᚈ ᚌᚑᚑᚅᚄ
 Repository containing files and source code for the CS4445 AI module's final capstone project.
 
-**Group name:** <ENTER_GROUP_NAME>  
+**Group name:** ᚌᚔᚈ ᚌᚑᚑᚅᚄ 
   
 **Team members:**
 - Fred Sheppard - 23361433
