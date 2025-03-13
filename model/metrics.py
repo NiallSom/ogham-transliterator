@@ -65,5 +65,5 @@ class Metrics:
         print("Classification Report:\n", report)
 
 # Example Usage:
-metrics = Metrics("best_ogham_hybrid_model.h5", "/Users/tolabowenmaccurtain/Desktop/ISE/Block-7/AI/Project/synthesis/output/labels.csv", "/Users/tolabowenmaccurtain/Desktop/ISE/Block-7/AI/Project/synthesis/output/temp-letters-dir")
+metrics = Metrics("best_ogham_hybrid_model.h5", "output/labels.csv", "output/temp-letters-dir")
 metrics.evaluate_model()
