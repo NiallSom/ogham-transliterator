@@ -186,99 +186,8 @@ def batch_predict(image_dir, pattern="*.png"):
 
     return results
 
-# Add data augmentation to improve model robustness
-def train_with_augmentation():
-    # Load and prepare data (same as before)
-    csv_path = "output/labels.csv"
-    df = pd.read_csv(csv_path)
 
-    unique_letters = df["img_letter"].unique()
-    letter_to_label = {letter: i for i, letter in enumerate(unique_letters)}
-    label_to_letter = {i: letter for letter, i in letter_to_label.items()}
 
-    df["label"] = df["img_letter"].map(letter_to_label)
-
-    # Load images and labels
-    image_dir = "output/temp-letters-dir"
-    images = []
-    labels = []
-    for _, row in df.iterrows():
-        img_path = os.path.join(image_dir, f"{row['img_no']:05}.png")
-        if os.path.exists(img_path):
-            img = load_img(img_path, color_mode="grayscale", target_size=(128, 128))
-            img = img_to_array(img) / 255.0
-            images.append(img)
-            labels.append(row["label"])
-
-    images = np.array(images)
-    labels = np.array(labels)
-    labels = to_categorical(labels, num_classes=len(unique_letters))
-
-    # Split into training and validation sets
-    X_train, X_val, y_train, y_val = train_test_split(images, labels, test_size=0.2, random_state=42)
-
-    # Create data augmentation generator
-    datagen = ImageDataGenerator(
-        rotation_range=10,  # slight rotations
-        width_shift_range=0.1,
-        height_shift_range=0.1,
-        zoom_range=0.1,
-        brightness_range=[0.8, 1.2],
-        shear_range=5,
-        fill_mode='nearest'
-    )
-
-    # Build model (same as hybrid model from before)
-    input_shape = (128, 128, 1)
-    inputs = Input(shape=input_shape)
-
-    x = Conv2D(32, (3, 3), activation='relu', padding='same')(inputs)
-    x = MaxPooling2D((2, 2))(x)
-    x = Conv2D(64, (3, 3), activation='relu', padding='same')(x)
-    x = MaxPooling2D((2, 2))(x)
-    x = Conv2D(128, (3, 3), activation='relu', padding='same')(x)
-    x = MaxPooling2D((2, 2))(x)
-
-    x = Reshape((16, 16*128))(x)
-
-    x = Bidirectional(LSTM(128, return_sequences=True))(x)
-    x = Bidirectional(LSTM(64))(x)
-
-    x = Dense(128, activation='relu')(x)
-    x = Dropout(0.5)(x)
-    outputs = Dense(len(unique_letters), activation='softmax')(x)
-
-    model = Model(inputs=inputs, outputs=outputs)
-    model.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['accuracy'])
-
-    # Train with data augmentation
-    datagen.fit(X_train)
-
-    callbacks = [
-        EarlyStopping(patience=15, restore_best_weights=True),
-        ReduceLROnPlateau(factor=0.2, patience=7, min_lr=1e-6),
-        ModelCheckpoint('best_ogham_augmented_model.h5', save_best_only=True)
-    ]
-
-    history = model.fit(
-        datagen.flow(X_train, y_train, batch_size=32),
-        validation_data=(X_val, y_val),
-        epochs=100,
-        steps_per_epoch=len(X_train) // 32,
-        callbacks=callbacks
-    )
-
-    # Evaluate the model
-    model = load_model('best_ogham_augmented_model.h5')
-    loss, accuracy = model.evaluate(X_val, y_val)
-    print(f"Validation Loss: {loss}")
-    print(f"Validation Accuracy: {accuracy}")
-
-    # Save the label mapping
-    with open('label_to_letter.json', 'w') as f:
-        json.dump({str(k): v for k, v in label_to_letter.items()}, f)
-
-    return model, label_to_letter
 
 if __name__ == "__main__":
     # Choose one of these training functions:
@@ -292,7 +201,7 @@ if __name__ == "__main__":
     # model, label_mapping = train_with_augmentation()
 
 
-    print("Training complete! Model saved.")
-    test_image_path = "/Users/tolabowenmaccurtain/Desktop/ISE/Block-7/AI/Project/model/Test(r).png"  # Update this with the actual image path
+    # print("Training complete! Model saved.")
+    test_image_path = ("/Users/tolabowenmaccurtain/Desktop/ISE/Block-7/AI/Project/model/Test(g).png")  # Update this with the actual image path
     result = predict_image(test_image_path)
     print(f"Predicted: {result['predicted']}, Confidence: {result['confidence']:.2f}")
