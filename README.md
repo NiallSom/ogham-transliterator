@@ -37,9 +37,26 @@ pip install -r requirements.txt
 
 Example:
 ```bash
-python model/client.py --model best_ogham_hybrid_model.h5 --image G.png --heatmap 
-python model/client.py --model best_ogham_hybrid_model.h5 --image test.png --train
-python model/client.py --model best_ogham_hybrid_model.h5 --image test.png --heatmap    
-python model/client.py --model best_ogham_hybrid_model.h5 --image test.png --train --heatmap   
-python model/client.py --model best_ogham_hybrid_model.h5 --image test.png --labels model/label_to_letter.json #only used if labels cannot be found 
+python model/client.py --model model/saved_model --image G.png --heatmap 
+python model/client.py --model model/saved_model --image test.png --train
+python model/client.py --model model/saved_model --image test.png --heatmap    
+python model/client.py --model model/saved_model --image test.png --train --heatmap   
+python model/client.py --model model/saved_model --image test.png --labels model/label_to_letter.json #only used if labels cannot be found 
 ```
+
+## Drawing Interface
+
+The project includes an interactive drawing interface that allows you to draw Ogham characters and get real-time predictions using the hybrid model:
+
+```bash
+python model/draw_interface.py
+```
+
+Features:
+- Draw Ogham characters using your mouse
+- Click "Predict" to get model predictions
+- Shows confidence scores and top 3 predictions
+- "Clear" button to reset the canvas
+- Automatically resizes drawings to match model input size
+
+Note: Ensure you have trained the model first using the commands above, as the interface requires `model/saved_model` and `model/label_to_letter.json` to be present.
