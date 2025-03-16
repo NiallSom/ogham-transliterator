@@ -60,3 +60,6 @@ Features:
 - Automatically resizes drawings to match model input size
 
 Note: Ensure you have trained the model first using the commands above, as the interface requires `model/saved_model` and `model/label_to_letter.json` to be present.
+
+## Demo
+![Demo of Ogham Recognition](images/Z-demo.png)
