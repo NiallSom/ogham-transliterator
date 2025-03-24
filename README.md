@@ -1,13 +1,9 @@
-[![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-22041afd0340ce965d47ae6ef1cefeee28c7c493a6346c4f15d667ab976d596c.svg)](https://classroom.github.com/a/XqvnLU5y)
-# ᚌᚔᚈ ᚌᚑᚑᚅᚄ
 Repository containing files and source code for the CS4445 AI module's final capstone project.
-
-**Group name:** ᚌᚔᚈ ᚌᚑᚑᚅᚄ 
   
 **Team members:**
-- Fred Sheppard - 23361433
-- Tóla Bowen MacCurtáin - 23383372
-- Niall Somers - 23371455
+- Fred Sheppard
+- Tóla Bowen MacCurtáin
+- Niall Somers
 
 ## Installation/Pre-requisites
 
@@ -34,7 +30,8 @@ pip install -r requirements.txt
 - `--image`: Path to the image you would like to run the defined model on
 - `--labels`: Path to defined labels json file
 - `--heatmap`: Define whether you want the heatmap of focus points or not
-
+- `--train`: Define whether you want to train the model or not
+- 
 Example:
 ```bash
 python model/client.py --model model/saved_model --image G.png --heatmap 
