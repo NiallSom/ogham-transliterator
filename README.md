@@ -1,9 +1,4 @@
 Repository containing files and source code for the CS4445 AI module's final capstone project.
-  
-**Team members:**
-- Fred Sheppard
-- Tóla Bowen MacCurtáin
-- Niall Somers
 
 ## Installation/Pre-requisites
 
